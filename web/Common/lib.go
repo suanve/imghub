@@ -39,5 +39,3 @@ func RandInt64(min, max int) int {
 	}
 	return rand.Intn(max-min) + min
 }
-
-

@@ -1,0 +1,5 @@
+uploads/*
+.vscode/
+doccenter
+.idea/
+go.sum

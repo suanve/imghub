@@ -16,19 +16,20 @@ func ReadImg(c *gin.Context) {
 	imgService.AddIP = c.ClientIP()              //获取访客ip
 	imgService.AddTime = time.Now().Unix()       //时间
 	imgService.AddUA = c.GetHeader("User-Agent") //ua
-	re, _ := regexp.Compile(`[a-z0-9]{32}`)
+	re, _ := regexp.Compile(`^[a-z0-9]{32}$`)
 	if re.MatchString(imgService.IMGID) {
 		path, err := imgService.GetPath(imgService.IMGID)
 		if err != nil {
-			c.JSON(500, gin.H{"message": "server err"})
+			c.JSON(403, gin.H{"message": "img not found"})
 			return
 		}
 		c.File(path)
 		if !imgService.AddViewLOG() {
-			c.JSON(401, gin.H{"message": "not found"})
+			// 报错日志不对外输出
+			// c.JSON(403, gin.H{"message": "addlog error"})
 		}
 
 	} else {
-		c.JSON(401, gin.H{"message": "not found"})
+		c.JSON(403, gin.H{"message": "img id not found"})
 	}
 }

@@ -14,5 +14,10 @@ func InitRouter() {
 	router.POST("/upload", Controllers.Upload)
 	router.GET("/uploads/:IMGID", Controllers.ReadImg)
 
+	manage := router.Group("/manage")
+	{
+		manage.GET("",Controllers.ManageIndex)
+	}
+
 	router.Run(":8081")
 }

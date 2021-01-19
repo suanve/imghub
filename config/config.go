@@ -3,37 +3,42 @@ package config
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 var (
-	RootDir = "./web"
+	RootDir   = "./web"
 	SecretKey string
-	DB string
-	HubHost = "127.0.0.1"
+	DB        string
+	HubHost   = "127.0.0.1"
+	Port      = 8081
+	MysqlHost = "127.0.0.1"
+	MysqlPort = 3307
+	MysqlPass = "root"
 )
 
 func init() {
-	var mysqlHost string
-	DockerPass := "xingyu"
 	if os.Getenv("MysqlHost") != "" {
-		mysqlHost = os.Getenv("MysqlHost")
+		MysqlHost = os.Getenv("MysqlHost")
 	} else {
-		mysqlHost = "127.0.0.1"
+		MysqlHost = "127.0.0.1"
 	}
 
-	if os.Getenv("DockerPass") != "" {
-		DockerPass = os.Getenv("DockerPass")
+	if os.Getenv("mysqlPass") != "" {
+		MysqlPass = os.Getenv("mysqlPass")
+	}
+	if os.Getenv("mysqlPort") != "" {
+		MysqlPort, _ = strconv.Atoi(os.Getenv("mysqlPort"))
 	}
 
-	DB = fmt.Sprintf("%v:%v@tcp(%v:3306)/%v?charset=utf8",
+	DB = fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8",
 		"root",
-		DockerPass,
-		mysqlHost,
+		MysqlPass,
+		MysqlHost,
+		MysqlPort,
 		"imgHub")
 	SecretKey = "biubiubiu"
 	if os.Getenv("HubHost") != "" {
 		HubHost = os.Getenv("HubHost")
-	} else {
-		HubHost = "127.0.0.1"
 	}
 }
