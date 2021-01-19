@@ -3,26 +3,7 @@ package Models
 import (
 	"fmt"
 	Mysql "imgHub/web/Databases"
-
-	"github.com/dgrijalva/jwt-go"
 )
-
-//用户数据结构
-type User struct {
-	Id       int    `json:id`
-	Username string `json:username`
-	Password string `json:password`
-	Level    int    `json:level`
-}
-
-// JWT认证数据结构
-type Claims struct {
-	Id       int    `json:"id"`       // id
-	Username string `json:"username"` // 用户名
-	Password string `json:"password"` // 密码
-	Level    int    `json:"level"`    // 密码
-	jwt.StandardClaims
-}
 
 type Imgs struct {
 	ID       int `gorm:"primary_key`
