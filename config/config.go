@@ -4,41 +4,49 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 )
 
 var (
-	RootDir   = "./web"
-	SecretKey string
-	DB        string
-	HubHost   = "127.0.0.1"
-	Port      = 8081
-	MysqlHost = "127.0.0.1"
-	MysqlPort = 3307
-	MysqlPass = "root"
+	RootDir             = "./web"
+	SecretKey           []byte
+	DB                  string
+	HubHost             = "127.0.0.1"
+	Port                = 8081
+	MysqlHost           = "127.0.0.1"
+	MysqlUser           = "root"
+	MysqlPass           = "root"
+	MysqlPort           = 3307
+	TokenExpireDuration = time.Hour * 24
 )
 
 func init() {
-	if os.Getenv("MysqlHost") != "" {
-		MysqlHost = os.Getenv("MysqlHost")
-	} else {
-		MysqlHost = "127.0.0.1"
+	if os.Getenv("mysqlHost") != "" {
+		MysqlHost = os.Getenv("mysqlHost")
+	}
+
+	if os.Getenv("mysqlUser") != "" {
+		MysqlUser = os.Getenv("mysqlUser")
 	}
 
 	if os.Getenv("mysqlPass") != "" {
 		MysqlPass = os.Getenv("mysqlPass")
 	}
+
 	if os.Getenv("mysqlPort") != "" {
 		MysqlPort, _ = strconv.Atoi(os.Getenv("mysqlPort"))
 	}
 
+	if os.Getenv("hubHost") != "" {
+		HubHost = os.Getenv("hubHost")
+	}
+
 	DB = fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8",
-		"root",
+		MysqlUser,
 		MysqlPass,
 		MysqlHost,
 		MysqlPort,
 		"imgHub")
-	SecretKey = "biubiubiu"
-	if os.Getenv("HubHost") != "" {
-		HubHost = os.Getenv("HubHost")
-	}
+	SecretKey = []byte("夏天夏天悄悄过去")
+
 }

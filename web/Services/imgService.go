@@ -32,25 +32,26 @@ func (this *Imgs) AddImage() (id int, err error) {
 // 获取图片存储地址
 func (this *Imgs) GetPath(id string) (path string, err error) {
 	var imgModel Models.Imgs
-	var img *Models.Imgs
-	img, err = imgModel.Where("img_id", id)
-	path = img.FilePath
+	img, err := imgModel.Where("img_id", id)
+	if len(img) > 0 {
+		path = img[0].FilePath
+	}
 	return
 }
 
 // 访问量增加
-
-func (this *Imgs) AddViewLOG()(flag bool){
+func (this *Imgs) AddViewLOG() (flag bool) {
 	var imgModel Models.Imgs
-	var img *Models.Imgs
 	var ViewLogsModel Models.ViewLogs
 	flag = true
 	img, err := imgModel.Where("img_id", this.IMGID)
-	if err != nil{
+	if err != nil {
 		flag = false
 	}
-	imgModel.Update("view_num",img.ViewNum+1)
-
+	if len(img) > 0 {
+		img[0].Update("view_num", img[0].ViewNum+1)
+		// imgModel.Update()
+	}
 
 	ViewLogsModel.IMGID = this.IMGID
 	ViewLogsModel.IP = this.AddIP
