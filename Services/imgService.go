@@ -1,7 +1,7 @@
 package Services
 
 import (
-	"imgHub/web/Models"
+	"imgHub/Models"
 )
 
 type Imgs struct {

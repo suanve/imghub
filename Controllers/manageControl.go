@@ -3,8 +3,8 @@ package Controllers
 import (
 	"encoding/json"
 	"fmt"
-	"imgHub/web/Models"
-	"imgHub/web/Services"
+	"imgHub/Models"
+	"imgHub/Services"
 	"io/ioutil"
 	"net/http"
 

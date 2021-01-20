@@ -1,8 +1,8 @@
 package Router
 
 import (
-	"imgHub/web/Controllers"
-	"imgHub/web/Middlewares"
+	"imgHub/Controllers"
+	"imgHub/Middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,8 +10,8 @@ import (
 func InitRouter() {
 	router := gin.Default()
 	router.Use(Middlewares.Cors())
-	router.Static("/static/", "./web/Views/static/")
-	router.LoadHTMLGlob("./web/Views/*.html")
+	router.Static("/static/", "./web/static/")
+	router.LoadHTMLGlob("./web/*.html")
 
 	router.GET("/", Controllers.Index)
 	router.POST("/upload", Controllers.Upload)

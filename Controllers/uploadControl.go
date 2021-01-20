@@ -2,9 +2,9 @@ package Controllers
 
 import (
 	"fmt"
+	"imgHub/Common"
+	"imgHub/Services"
 	"imgHub/config"
-	"imgHub/web/Common"
-	"imgHub/web/Services"
 	"net/http"
 	"strconv"
 	"strings"

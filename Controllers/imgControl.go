@@ -1,7 +1,7 @@
 package Controllers
 
 import (
-	"imgHub/web/Services"
+	"imgHub/Services"
 	"regexp"
 	"time"
 

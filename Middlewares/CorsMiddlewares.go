@@ -1,7 +1,7 @@
 package Middlewares
 
 import (
-	"imgHub/web/Models"
+	"imgHub/Models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

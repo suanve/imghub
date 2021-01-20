@@ -3,4 +3,4 @@ uploads/*
 doccenter
 .idea/
 go.sum
-web/Views
+web/*

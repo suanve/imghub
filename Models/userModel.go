@@ -2,7 +2,7 @@ package Models
 
 import (
 	"fmt"
-	Mysql "imgHub/web/Databases"
+	Mysql "imgHub/Databases"
 )
 
 type Users struct {

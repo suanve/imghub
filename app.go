@@ -1,8 +1,8 @@
 package main
 
 import (
-	Mysql "imgHub/web/Databases"
-	"imgHub/web/Router"
+	Mysql "imgHub/Databases"
+	"imgHub/Router"
 )
 
 func main() {
