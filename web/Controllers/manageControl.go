@@ -35,7 +35,7 @@ func ManageLogin(c *gin.Context) {
 		if err != nil {
 			fmt.Println(err.Error())
 		}
-		fmt.Println(user.Username)
+		// fmt.Println(user.Username)
 
 		c.JSON(http.StatusOK, gin.H{"code": 200, "token": tokenString})
 	} else {

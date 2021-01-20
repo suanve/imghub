@@ -17,7 +17,7 @@ type Claims struct {
 func (this *Claims) GenToken(username string) (string, error) {
 	// 创建一个我们自己的声明
 	c := Claims{
-		"username", // 自定义字段
+		username, // 自定义字段
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(config.TokenExpireDuration).Unix(), // 过期时间
 			Issuer:    "my-project",                                      // 签发人
