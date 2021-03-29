@@ -19,7 +19,7 @@ func ReadImg(c *gin.Context) {
 	re, _ := regexp.Compile(`^[a-z0-9]{32}$`)
 	if re.MatchString(imgService.IMGID) {
 		path, err := imgService.GetPath(imgService.IMGID)
-		if err != nil {
+		if err == nil && len(path) == 0 {
 			c.JSON(403, gin.H{"message": "img not found"})
 			return
 		}

@@ -4,3 +4,4 @@ doccenter
 .idea/
 go.sum
 web/Views
+imghub.db

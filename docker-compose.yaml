@@ -1,14 +1,5 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.7
-    restart: always
-    environment: # 定义环境变量，类似 -e
-       MYSQL_ROOT_PASSWORD: root@123asd
-       MYSQL_DATABASE: imgHub
-       MYSQL_USER: imghub
-       MYSQL_PASSWORD: 123456
-
   imghub:
     restart: always
     ports: # 端口，类似 -p
@@ -17,11 +8,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
-      mysqlHost: db
-      mysqlUser: imghub
-      mysqlPass: 123456
-      mysqlPort: 3306
       HubHost: 127.0.0.1
     container_name: imghub
-    depends_on:
-      - db
+
