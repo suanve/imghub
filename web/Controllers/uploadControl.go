@@ -33,7 +33,7 @@ func Upload(c *gin.Context) {
 
 		Img.IMGID = Common.Md5(file.Filename + strconv.FormatInt(Img.AddTime, 10) + Common.RandomString(20))
 
-		fileurl := fmt.Sprintf("http://%s:%d/uploads/%s", config.HubHost, config.Port, Img.IMGID)
+		fileurl := fmt.Sprintf("%s://%s:%d/uploads/%s", config.Protocol, config.HubHost, config.Port, Img.IMGID)
 		url += fileurl + "\n"
 		Img.AddImage()
 	}

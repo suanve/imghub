@@ -14,6 +14,7 @@ var (
 	HubHost             = "127.0.0.1"
 	Port                = 8081
 	TokenExpireDuration = time.Hour * 24
+	Protocol            = "https"
 )
 
 func init() {
